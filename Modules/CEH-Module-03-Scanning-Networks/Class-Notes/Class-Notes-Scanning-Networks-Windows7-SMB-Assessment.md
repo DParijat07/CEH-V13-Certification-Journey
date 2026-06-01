@@ -220,6 +220,17 @@ Mitigation for MS17-010:
 
 ---
 
+## Key Learning Outcomes
+
+- Understand Layer 2 host discovery techniques
+- Identify live hosts using ARP-based scanning
+- Perform TCP port scanning using Nmap
+- Enumerate services and versions
+- Understand SMB enumeration concepts
+- Conduct vulnerability identification using NSE scripts
+- Analyze scan results and prioritize findings
+- Learn the network scanning phase of a VAPT assessment
+
 ## Ethical Reminder
 
 All testing was performed in a controlled lab environment for educational purposes only.
