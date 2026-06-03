@@ -1,4 +1,4 @@
-# Module 02 - Class Notes
+# Module 02 - Notes
 
 This directory contains class notes, revision notes, and instructor-led learning materials related to **CEH v13 Module 02: Footprinting and Reconnaissance**.
 
