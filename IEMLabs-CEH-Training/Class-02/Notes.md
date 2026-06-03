@@ -1,340 +1,236 @@
-# Class-02
+## Class 02 Lab Notes
 
-Date- 01/06/2026 - Monday
+Date- 01/06/2026
 
-# CEH Module 02 - Footprinting and Reconnaissance
+### Objective
 
-## Module Overview
-
-Footprinting and Reconnaissance is the first phase of ethical hacking.
-In this phase, an ethical hacker gathers information about a target system, network, or organization before performing any attack or vulnerability assessment.
-
-The goal is to collect as much information as possible while understanding:
-
-* target infrastructure
-* IP addresses
-* domains
-* subdomains
-* technologies
-* operating systems
-* exposed services
-
-This module also introduced the importance of setting up a cybersecurity home lab for practical learning.
+Learn how to identify hosts in a network, perform reconnaissance, discover services, identify vulnerabilities, and understand the exploitation lifecycle in a controlled lab environment.
 
 ---
 
-# Learning Objectives
+## Lab Environment
 
-* Understand footprinting and reconnaissance concepts
-* Learn passive and active reconnaissance techniques
-* Understand information gathering methodology
-* Learn basic network scanning concepts
-* Explore reconnaissance tools
-* Understand practical lab environments
+### Attacker Machine
 
----
+* Kali Linux
+* VMware Workstation
 
-# What is Footprinting?
+### Victim Machine
 
-Footprinting is the process of collecting information about a target system or organization.
+* Windows 7
+* VMware Workstation
 
-It helps ethical hackers:
+### Network Configuration
 
-* identify attack surfaces
-* understand network structure
-* detect exposed services
-* gather intelligence before scanning or exploitation
+* NAT Network
 
----
+Purpose:
 
-# Reconnaissance Types
-
-## Passive Reconnaissance
-
-Information gathering without directly interacting with the target system.
-
-### Examples
-
-* WHOIS lookup
-* DNS information gathering
-* searching public records
-* Google Dorking
-* subdomain enumeration
-
-### Advantages
-
-* difficult to detect
-* safe information gathering
+* Allow communication between Kali Linux and Windows 7.
+* Simulate a small internal network.
 
 ---
 
-## Active Reconnaissance
+## Phase 1: Host Discovery
 
-Direct interaction with the target system or network.
+### Netdiscover
 
-### Examples
+Used to identify active hosts on the network.
 
-* ping sweep
-* port scanning
-* Nmap scanning
-* service detection
-
-### Risks
-
-* may generate logs
-* may trigger alerts or IDS systems
-
----
-
-# Information Gathered During Reconnaissance
-
-* Domain names
-* IP addresses
-* DNS records
-* Subdomains
-* Open ports
-* Running services
-* Operating systems
-* Email addresses
-* Network ranges
-
----
-
-# Tools Introduced
-
-## NSLookup
-
-Used for:
-
-* domain-to-IP resolution
-* DNS queries
-
-Example:
+Command:
 
 ```bash
-nslookup example.com
+netdiscover
 ```
 
----
+Result:
 
-# WHOIS Lookup
-
-Used to gather:
-
-* domain registration details
-* registrar information
-* registration dates
-* expiration dates
+* Identified active devices in the subnet.
+* Obtained Windows 7 target IP address.
 
 ---
 
-# DNSChecker
+### ARP Scan
 
-Used to:
+Used to enumerate live hosts using ARP requests.
 
-* verify DNS propagation
-* analyze DNS records
+Command:
 
----
-
-# ViewDNS.info
-
-Used for:
-
-* DNS analysis
-* reverse IP lookup
-* domain information gathering
-
----
-
-# Subdomain Finder
-
-Used to:
-
-* identify subdomains
-* map target infrastructure
-
----
-
-# Google Dorking
-
-Google Dorking is an information gathering technique that uses advanced search queries to discover exposed or sensitive information.
-
-Example:
-
-```text
-site:example.com
+```bash
+arp-scan -l
 ```
 
----
+Result:
 
-# Nmap Introduction
-
-Nmap is a network scanning tool used for:
-
-* host discovery
-* port scanning
-* service detection
-* operating system detection
+* Confirmed target system presence.
+* Verified local network hosts.
 
 ---
 
-# Basic Nmap Concepts
+## Phase 2: Port Scanning
 
-## Service Version Detection
+### Basic Nmap Scan
+
+Command:
+
+```bash
+nmap <target-ip>
+```
+
+Purpose:
+
+* Discover open ports.
+
+Result:
+
+* Port 445/TCP found open.
+* Service identified as Microsoft-DS (SMB).
+
+---
+
+## Phase 3: Service Enumeration
+
+### Version Detection Scan
+
+Command:
 
 ```bash
 nmap -sV <target-ip>
 ```
 
-Used to identify:
+Purpose:
 
-* service versions
-* software information
+* Identify service versions.
+
+Result:
+
+* Confirmed Windows 7 operating system.
+* SMB service detected.
 
 ---
 
-# Aggressive Scan
+## Phase 4: Vulnerability Assessment
+
+### NSE Vulnerability Scan
+
+Command:
 
 ```bash
-nmap -A <target-ip>
+nmap --script vuln <target-ip>
 ```
-
-Performs:
-
-* OS detection
-* version detection
-* script scanning
-* traceroute
-
----
-
-# Timing Templates
-
-Nmap timing templates:
-
-* T1 (slow)
-* T2
-* T3
-* T4 (faster)
-* T5 (very aggressive)
-
-Example:
-
-```bash
-nmap -T4 <target-ip>
-```
-
----
-
-# Home Lab Setup
-
-A cybersecurity home lab is important for safe practical learning.
-
----
-
-# Hypervisor Used
-
-## VMware Workstation
-
-Used to create virtual machines for:
-
-* penetration testing
-* vulnerability analysis
-* networking practice
-
----
-
-# Lab Machines Configured
-
-## Attack Machine
-
-### Kali Linux
 
 Purpose:
 
-* reconnaissance
-* scanning
-* exploitation
-* penetration testing
+* Identify known vulnerabilities.
+
+Finding:
+
+* SMB vulnerability detected.
+* MS17-010 (EternalBlue) identified.
+
+Risk:
+
+* Remote Code Execution.
+* Potential complete system compromise.
 
 ---
 
-# Victim Machines
+## Phase 5: Exploitation Overview
 
-## Windows 7
+A controlled demonstration was performed using Metasploit Framework against the vulnerable Windows 7 system.
 
-Used for:
+General Steps:
 
-* Windows testing
-* vulnerability practice
+1. Select exploit module.
+2. Configure target parameters.
+3. Launch exploit.
+4. Obtain Meterpreter session.
 
-## Metasploitable 2
+Outcome:
 
-Intentionally vulnerable Linux machine used for:
-
-* exploitation practice
-* Nmap scanning
-* service enumeration
+* Remote access obtained in lab environment.
 
 ---
 
-# Future Lab Expansion
+## Phase 6: Post-Exploitation Concepts
 
-## Ubuntu Server with Wazuh
+Activities demonstrated:
 
-Planned future setup:
+### Process Enumeration
 
-* Wazuh SIEM server
-* log monitoring
-* attack detection
-* threat monitoring
+* Viewing active processes.
 
-Victim machines will contain:
+### Process Migration
 
-* Wazuh agents
+* Migrating to a stable process.
 
-This setup will help in learning:
+Purpose:
 
-* SOC operations
-* threat analysis
-* blue team monitoring
+* Improve session reliability.
 
----
+### Credential Access Demonstration
 
-# CEH Relevance
+* Password hash extraction techniques demonstrated.
 
-Footprinting and reconnaissance are critical because:
+### File System Interaction
 
-* attackers first gather intelligence
-* ethical hackers must understand target environments
-* proper reconnaissance improves vulnerability assessment accuracy
+* Creation of directories/files on the target machine.
 
-This phase forms the foundation for:
+Purpose:
 
-* scanning
-* exploitation
-* privilege escalation
-* vulnerability analysis
+* Understand post-exploitation capabilities.
 
 ---
 
-# Key Learnings
+## Key Learning Outcomes
 
-* Reconnaissance is the first phase of ethical hacking
-* Passive reconnaissance avoids direct interaction
-* Active reconnaissance directly interacts with targets
-* Nmap is one of the most important network scanning tools
-* Home labs are essential for practical cybersecurity learning
-* Proper documentation improves long-term skill development
+* Host Discovery
+* ARP Enumeration
+* Nmap Scanning
+* Service Enumeration
+* Vulnerability Assessment
+* Understanding Exploitation Workflow
+* Post-Exploitation Concepts
+* Importance of Patch Management
 
 ---
 
-# Practical Exposure
+## Defensive Perspective
 
-* WHOIS lookups
-* NSLookup usage
-* Nmap scanning concepts
-* VM-based cybersecurity lab setup
-* Network scanning basics
-* Linux-based reconnaissance tools
+Mitigation for MS17-010:
+
+* Apply Microsoft security updates.
+* Disable SMBv1.
+* Segment networks.
+* Enable endpoint protection.
+* Monitor SMB traffic.
+* Implement vulnerability management programs.
+
+---
+
+## Tools Used
+
+* VMware Workstation
+* Kali Linux
+* Windows 7
+* Netdiscover
+* ARP-Scan
+* Nmap
+* Metasploit Framework
+
+---
+
+## Key Learning Outcomes
+
+- Understand Layer 2 host discovery techniques
+- Identify live hosts using ARP-based scanning
+- Perform TCP port scanning using Nmap
+- Enumerate services and versions
+- Understand SMB enumeration concepts
+- Conduct vulnerability identification using NSE scripts
+- Analyze scan results and prioritize findings
+- Learn the network scanning phase of a VAPT assessment
+
+## Ethical Reminder
+
+All testing was performed in a controlled lab environment for educational purposes only.
