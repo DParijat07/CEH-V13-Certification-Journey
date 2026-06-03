@@ -1,4 +1,4 @@
-# Class Notes
+# Notes
 
 ## Purpose
 This directory contains structured notes from CEH Module 03 lectures and self-study sessions.
