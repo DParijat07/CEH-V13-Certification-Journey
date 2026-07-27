@@ -1,224 +1,260 @@
-# CEH Module 02 - Footprinting and Reconnaissance
+# CEH v13 Module 02 – Footprinting and Reconnaissance
 
 ## Overview
 
-This module focuses on Footprinting and Reconnaissance, the first phase of ethical hacking. The objective is to gather information about a target system, organization, or network before performing vulnerability assessment or penetration testing activities.
+Footprinting and Reconnaissance is the first operational phase of ethical hacking. Before attempting to identify vulnerabilities or exploit systems, an ethical hacker gathers as much information as possible about the target. This information helps build a detailed profile of the target organization, reducing uncertainty and improving the effectiveness of later attack phases.
 
-Reconnaissance helps ethical hackers understand the target environment and identify potential attack surfaces.
+Reconnaissance can be performed passively (without directly interacting with the target) or actively (through direct interaction). Ethical hackers use Open Source Intelligence (OSINT), DNS analysis, WHOIS lookups, search engine techniques, social media intelligence, metadata extraction, and specialized reconnaissance tools to collect valuable information.
 
----
-
-# CEH v13 Module Mapping
-
-**Official CEH v13 Module:**
-
-* Module 02: Footprinting and Reconnaissance
+Understanding reconnaissance techniques is essential because every penetration test begins with information gathering. The quality of information collected during this phase directly influences the success of subsequent activities such as scanning, enumeration, vulnerability assessment, and exploitation.
 
 ---
 
 # Learning Objectives
 
-* Understand the importance of reconnaissance
-* Differentiate between passive and active reconnaissance
-* Learn information gathering methodologies
-* Identify target infrastructure components
-* Understand domain and DNS enumeration
-* Learn basic network scanning concepts
-* Explore common reconnaissance tools
+After completing this module, you should be able to:
+
+- Understand the purpose of footprinting and reconnaissance.
+- Differentiate between passive and active reconnaissance.
+- Collect publicly available information using OSINT techniques.
+- Perform DNS and WHOIS reconnaissance.
+- Identify IP address ranges, Autonomous Systems (ASNs), and network ownership.
+- Enumerate subdomains and internet-facing assets.
+- Use reconnaissance tools such as Maltego, theHarvester, Recon-ng, SpiderFoot, FOCA, Shodan, and Censys.
+- Gather information from websites, search engines, GitHub repositories, cloud services, and social media.
+- Understand metadata analysis and information leakage.
+- Recognize defensive measures that reduce reconnaissance success.
 
 ---
 
-# Topics Covered
+# Why Footprinting Matters
 
-## Footprinting Fundamentals
+Reconnaissance provides attackers and penetration testers with valuable intelligence before interacting with the target.
 
-* What is Footprinting
-* Purpose of Information Gathering
-* Attack Surface Identification
-* Intelligence Gathering
+The information collected may reveal:
 
----
+- Public IP addresses
+- Domain names
+- DNS records
+- Employee information
+- Email addresses
+- Network infrastructure
+- Cloud services
+- Open ports
+- Internet-facing servers
+- Technology stack
+- Security misconfigurations
+- Public documents containing metadata
 
-## Reconnaissance Types
-
-### Passive Reconnaissance
-
-Information gathering without directly interacting with the target.
-
-Examples:
-
-* WHOIS lookup
-* DNS record analysis
-* Search engine research
-* Public information gathering
-
-### Active Reconnaissance
-
-Information gathering through direct interaction with the target.
-
-Examples:
-
-* Ping sweeps
-* Port scanning
-* Service enumeration
-* Nmap scanning
+Well-executed reconnaissance often allows attackers to identify weaknesses without directly attacking the target.
 
 ---
 
-## Information Collected
+# Passive vs Active Reconnaissance
 
-* Domain names
-* IP addresses
-* DNS records
-* Subdomains
-* Open ports
-* Running services
-* Operating systems
-* Network ranges
+## Passive Reconnaissance
 
----
+Passive reconnaissance collects information without directly communicating with the target.
 
-# Tools Introduced
+Examples include:
 
-## Online Tools
+- Search engines
+- WHOIS databases
+- Public DNS records
+- Company websites
+- LinkedIn
+- GitHub
+- Job advertisements
+- Public documents
+- Social media
 
-* WHOIS Lookup
-* DNSChecker
-* ViewDNS.info
-* Subdomain Finder
+Advantages:
 
-## Command-Line Tools
-
-### NSLookup
-
-Used to query DNS information.
-
-Example:
-
-```bash
-nslookup example.com
-```
-
-### Nmap
-
-Used for:
-
-* Host discovery
-* Port scanning
-* Service detection
-* OS detection
-
-Example:
-
-```bash
-nmap -sV <target-ip>
-```
+- Difficult to detect
+- Low operational risk
+- No direct interaction with target systems
 
 ---
 
-# Home Lab Mapping
+## Active Reconnaissance
 
-## Attack Machine
+Active reconnaissance involves direct interaction with target systems.
 
-### Kali Linux
+Examples include:
 
-Used for:
+- DNS queries
+- Ping sweeps
+- Port scanning
+- Banner grabbing
+- Service enumeration
+- Traceroute
 
-* Reconnaissance
-* Scanning
-* Enumeration
-* Ethical Hacking Practice
+Advantages:
 
----
+- More accurate
+- More detailed
+- Reveals live infrastructure
 
-## Victim Machines
+Disadvantages:
 
-### Windows 7
-
-Used for:
-
-* Windows Security Testing
-* Enumeration Practice
-
-### Metasploitable 2
-
-Used for:
-
-* Vulnerability Discovery
-* Service Enumeration
-* Nmap Practice
+- Easier to detect
+- May trigger IDS/IPS alerts
+- Requires authorization during ethical hacking engagements
 
 ---
 
-# Future Lab Expansion
+# Module Topics
 
-## Ubuntu Server + Wazuh
+This module covers:
 
-Planned implementation:
-
-* Wazuh Manager
-* Security Monitoring
-* Log Analysis
-* Threat Detection
-
-Victim machines will have:
-
-* Wazuh Agents Installed
-
----
-
-# Practical Activities
-
-* WHOIS Lookups
-* DNS Enumeration
-* Domain Investigation
-* Subdomain Discovery
-* Nmap Scanning Concepts
-* Network Identification
-* Lab Environment Preparation
-
----
-
-# Hands-On Platforms
-
-* TryHackMe
-* VMware Workstation
-* Kali Linux
-* Metasploitable 2
-* Windows 7
+- Footprinting fundamentals
+- Reconnaissance methodology
+- Open Source Intelligence (OSINT)
+- Search engine footprinting
+- Google Dorking
+- WHOIS
+- DNS footprinting
+- DNS records
+- Reverse DNS lookups
+- DNS Zone Transfers
+- IP addressing
+- Autonomous Systems (ASN)
+- BGP information
+- Website footprinting
+- Email footprinting
+- Metadata extraction
+- Employee enumeration
+- Social Media Intelligence (SOCMINT)
+- GitHub reconnaissance
+- Cloud reconnaissance
+- Wireless reconnaissance
+- Dark web intelligence
+- Information leakage
+- Countermeasures
 
 ---
 
-# Repository Structure
+# Common Reconnaissance Tools
 
-## Class-Notes
+This module introduces a variety of industry-standard reconnaissance tools.
 
-Contains module-related theory and class notes.
+## OSINT Tools
 
-## Daily-Journal
+- theHarvester
+- Recon-ng
+- SpiderFoot
+- Maltego
+- FOCA
 
-Contains daily learning reflections and progress tracking.
+## Internet Intelligence
 
-## TryHackMe-Writeups
+- Shodan
+- Censys
+- ZoomEye
 
-Contains room writeups mapped to reconnaissance and networking concepts.
+## DNS Tools
 
-## Screenshots
+- dig
+- nslookup
+- dnsenum
+- dnsrecon
 
-Contains screenshots of tools, labs, scans, and practical activities.
+## Search Engine Intelligence
+
+- Google Dorks
+- Bing Search Operators
+- Netcraft
+- BuiltWith
+
+---
+
+# Practical Skills You'll Learn
+
+After completing this module, you should be able to:
+
+- Gather organizational information using OSINT.
+- Perform DNS reconnaissance.
+- Identify public infrastructure.
+- Enumerate subdomains.
+- Discover exposed internet services.
+- Analyze website technologies.
+- Extract metadata from documents.
+- Identify employee information from public sources.
+- Use professional reconnaissance tools.
+- Produce a structured reconnaissance report.
+
+---
+
+# Real-World Applications
+
+Footprinting is widely used in:
+
+- Penetration testing
+- Red Team operations
+- Bug bounty hunting
+- Vulnerability assessments
+- SOC investigations
+- Threat intelligence
+- Incident response
+- Digital forensics
+- Attack surface management
+
+---
+
+# Defensive Perspective
+
+Organizations should reduce information leakage by:
+
+- Limiting publicly exposed information.
+- Using WHOIS privacy where appropriate.
+- Removing sensitive metadata from documents.
+- Restricting unnecessary DNS records.
+- Monitoring internet-facing assets.
+- Conducting regular attack surface reviews.
+- Training employees on social engineering risks.
+- Monitoring for exposed credentials and repositories.
+
+---
+
+# CEH Exam Tips
+
+Remember:
+
+- Reconnaissance is the first phase of ethical hacking.
+- Passive reconnaissance does not directly interact with the target.
+- Active reconnaissance involves communication with target systems.
+- OSINT relies on publicly available information.
+- DNS and WHOIS are essential sources of reconnaissance data.
+- Metadata can unintentionally reveal sensitive information.
+- Information gathered during reconnaissance guides later phases such as scanning, enumeration, and exploitation.
+
+---
+
+# Module Summary
+
+Module 02 introduces the information-gathering techniques used at the beginning of every ethical hacking engagement. By combining passive and active reconnaissance methods with OSINT tools, DNS analysis, search engine techniques, and internet intelligence platforms, ethical hackers can build a comprehensive understanding of a target's external attack surface.
+
+Mastering footprinting enables security professionals to identify exposed assets, understand organizational infrastructure, and improve defensive measures before vulnerabilities are exploited.
+
+---
+
+# Recommended Practice
+
+To reinforce the concepts in this module:
+
+- Practice WHOIS lookups on public domains.
+- Perform DNS enumeration in a lab environment.
+- Explore Shodan and Censys for internet-facing assets.
+- Use theHarvester and Recon-ng against test domains.
+- Analyze metadata from publicly available PDF and Office documents.
+- Review your own online footprint to understand information exposure.
 
 ---
 
 # Key Takeaways
 
-* Reconnaissance is the foundation of ethical hacking.
-* Information gathering helps identify attack surfaces.
-* Passive reconnaissance minimizes detection risk.
-* Active reconnaissance provides deeper technical insights.
-* Proper reconnaissance improves the effectiveness of vulnerability assessments and penetration tests.
-
----
-
-# Status
-
-Module In Progress 🚀
+- Reconnaissance is the foundation of every successful penetration test.
+- Passive reconnaissance minimizes detection by using publicly available information.
+- Active reconnaissance provides detailed technical information but is more likely to be detected.
+- OSINT, DNS analysis, metadata extraction, and reconnaissance tools help build a complete target profile.
+- Reducing public information exposure is a critical defensive strategy against reconnaissance-based attacks.
